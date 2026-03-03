@@ -1,0 +1,19 @@
+{
+  "gateway": {
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "${BEEPEE_GATEWAY_TOKEN}"
+    },
+    "trustedProxies": ["127.0.0.1"]
+  },
+  "logging": {
+    "redactSensitive": "tools"
+  },
+  "tools": {
+    "deny": ["exec", "fs.write", "fs.delete", "config.patch"],
+    "fs": {
+      "workspaceOnly": true
+    }
+  }
+}

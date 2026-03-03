@@ -1,0 +1,37 @@
+region = "us-east-2"
+name   = "beepee-exp"
+
+athena_workgroup = "beepee"
+
+# ECR image URI — run `terraform output ecr_repository_url` after first apply
+# then build and push: see "Docker image" section in CLAUDE.md
+beepee_image = "REPLACE_ME.dkr.ecr.us-east-2.amazonaws.com/beepee-exp:latest"
+
+# Slack Socket Mode tokens
+slack_bot_token = "xoxb-REPLACE_ME"
+slack_app_token = "xapp-REPLACE_ME"
+
+# Optional extra env for beepee
+beepee_env = {
+  "LOG_LEVEL" = "info"
+}
+
+# Optional: allowlisted Athena data S3 prefixes
+# data_access = [
+#   { bucket = "your-athena-data-bucket", prefix = "current/" }
+# ]
+
+enable_ssm = true
+instance_type = "t3.large"
+
+# Application-layer egress domain allowlist (enforced inside the beepee process, not the SG).
+# beepee will block outbound connections to domains not listed here.
+allow_domains = [
+  "slack.com",
+  "wss-primary.slack.com",
+  "api.anthropic.com",
+]
+
+# Send a Slack notification and await operator approval before connecting to
+# a domain outside allow_domains. Set to false to hard-block without prompting.
+domain_access_requests = true
