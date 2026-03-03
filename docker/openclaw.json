@@ -10,6 +10,31 @@
   "logging": {
     "redactSensitive": "tools"
   },
+  "agents": {
+    "defaults": {
+      "sandbox": {
+        "mode": "all",
+        "scope": "session",
+        "workspaceAccess": "ro"
+      }
+    }
+  },
+  "agent": {
+    "sandbox": {
+      "enabled": true,
+      "workspace": "/home/node/beepee_workspace",
+      "allow_read": ["/home/node/beepee_workspace"],
+      "allow_write": ["/home/node/beepee_workspace"],
+      "deny_paths": ["/etc", "/root", "/home/node/.ssh"],
+      "network": {
+        "allow_domains": [
+          "*.amazonaws.com",
+          "*.slack.com",
+          "api.anthropic.com"
+        ]
+      }
+    }
+  },
   "tools": {
     "deny": ["exec", "fs.write", "fs.delete", "config.patch"],
     "fs": {
