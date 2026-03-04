@@ -30,6 +30,7 @@ allow_domains = [
   "slack.com",
   "wss-primary.slack.com",
   "api.anthropic.com",
+  "*.amazonaws.com",
 ]
 
 # Send a Slack notification and await operator approval before connecting to
